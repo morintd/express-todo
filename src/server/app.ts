@@ -1,13 +1,13 @@
 import express, { Express, Request, Response } from 'express';
 import logger from 'morgan';
 
-import { setupRootModule } from '../modules';
+import { PrismaService, setupRootModule } from '../modules';
 
-export function createApp() {
+export function createApp(prisma: PrismaService) {
   const app = express();
 
   configureApp(app);
-  setupRootModule(app);
+  setupRootModule(app, prisma);
 
   app.use((_error: Error, _req: Request, res: Response) => {
     res.status(500);

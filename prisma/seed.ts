@@ -3,8 +3,12 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 async function seed(): Promise<void> {
-  console.log('Empty seed');
-  return Promise.resolve();
+  await prisma.todo.create({
+    data: {
+      title: 'TODO example title',
+      content: 'TODO example content',
+    },
+  });
 }
 
 seed()

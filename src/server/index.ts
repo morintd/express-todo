@@ -9,7 +9,7 @@ export async function createServer() {
   const prisma = new PrismaService();
   await prisma.$connect();
 
-  const app = createApp();
+  const app = createApp(prisma);
   const server: http.Server = http.createServer(app);
 
   const config = new ConfigService();
